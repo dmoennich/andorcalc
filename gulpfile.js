@@ -7,12 +7,14 @@ var gulp = require('gulp'),
 	tslint = require('gulp-tslint'),
 	sourcemaps = require('gulp-sourcemaps'),
 	del = require('del'),
-	Config = require('./gulpfile.config'),
-	tsProject = tsc.createProject('tsconfig.json');
-	//browserSync = require('browser-sync'),
-	//superstatic = require( 'superstatic' );
-
-var config = new Config();
+	//Config = require('./gulpfile.config'),
+	tsProject = tsc.createProject('tsconfig.json'),
+	config = {
+		'tsOutputPath': './public/js',
+		'allTypeScript': './browser/ts/**/*.ts',
+		'typings': './typings/',
+		'libraryTypeScriptDefinitions': './typings/**/*.ts'
+	};
 
 /**
  * Generates the app.d.ts references file dynamically from all application *.ts files.
@@ -39,7 +41,7 @@ gulp.task('ts-lint', function () {
 /**
  * Compile TypeScript and include references to library and app .d.ts files.
  */
-gulp.task('compile-ts', function () {
+gulp.task('ts-compile', ["ts-clean"], function () {
 	var sourceTsFiles = [config.allTypeScript,                //path to typescript files
 		config.libraryTypeScriptDefinitions]; //reference to library .d.ts files
 
@@ -57,7 +59,7 @@ gulp.task('compile-ts', function () {
 /**
  * Remove all generated JavaScript files from TypeScript compilation.
  */
-gulp.task('clean-ts', function (cb) {
+gulp.task('ts-clean', function () {
 	var typeScriptGenFiles = [
 		config.tsOutputPath +'/**/*.js',    // path to all JS files auto gen'd by editor
 		config.tsOutputPath +'/**/*.js.map', // path to all sourcemap files auto gen'd by editor
@@ -65,29 +67,11 @@ gulp.task('clean-ts', function (cb) {
 	];
 
 	// delete the files
-	del(typeScriptGenFiles, cb);
+	return del(typeScriptGenFiles);
 });
 
 gulp.task('watch', function() {
-	gulp.watch([config.allTypeScript], ['ts-lint', 'compile-ts']);
+	gulp.watch([config.allTypeScript], ['ts-lint', 'ts-compile']);
 });
 
-//gulp.task('serve', ['compile-ts', 'watch'], function() {
-//	process.stdout.write('Starting browserSync and superstatic...\n');
-//	browserSync({
-//		port: 3000,
-//		files: ['index.html', '**/*.js'],
-//		injectChanges: true,
-//		logFileChanges: false,
-//		logLevel: 'silent',
-//		logPrefix: 'angularin20typescript',
-//		notify: true,
-//		reloadDelay: 0,
-//		server: {
-//			baseDir: './src',
-//			middleware: superstatic({ debug: false})
-//		}
-//	});
-//});
-
-gulp.task('default', ['ts-lint', 'compile-ts']);
+gulp.task('default', ['ts-lint', 'ts-compile']);
