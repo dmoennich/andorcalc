@@ -1,3 +1,5 @@
+var createFields = require("../server/src/fields");
+
 
 describe("Fields", function () {
 
@@ -32,7 +34,7 @@ describe("Fields", function () {
 				expect(fields[2].ancestor).toEqual(5);
 			});
 
-			it("that returns the fiels object for chaining", function () {
+			it("that returns the fields object for chaining", function () {
 				var sameFields = fields.add(9,3);
 				expect(fields).toBe(sameFields);
 			});

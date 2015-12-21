@@ -11,6 +11,9 @@ var createFields = function () {
 	return fields;
 };
 
+module.exports = createFields;
+
+
 var andorMainFields = createFields();
 //andorMainFields
 //	.add(0)

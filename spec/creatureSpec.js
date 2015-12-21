@@ -1,4 +1,4 @@
-
+var creatures = require("../server/src/creatures");
 describe("Creatures", function () {
 
 	describe("is an array with all types of creatures", function () {

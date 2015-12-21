@@ -1,0 +1,2 @@
+- create gulp tasks for browser and server tests
+- implement fields import from json + transform to field array

@@ -1,1 +1,1 @@
-angular.module('AndorCalc', []);
+let AndorCalc = angular.module('AndorCalc', []);
