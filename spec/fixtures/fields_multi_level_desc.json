@@ -1,0 +1,23 @@
+{
+  "descendants": [
+    {
+      "number": 99,
+      "descendants": [
+        {
+          "number": 5
+        },
+        {
+          "number": 6,
+          "descendants": [
+            {
+              "number": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 11
+    }
+  ]
+}

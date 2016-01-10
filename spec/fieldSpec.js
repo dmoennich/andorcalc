@@ -42,6 +42,22 @@ describe("Fields", function () {
 		});
 
 
+		describe("have a size property", function () {
+
+			it("should be initially 0", function () {
+				expect(fields.size).toBe(0);
+			});
+
+			it("should be increased by one if field is added", function () {
+				expect(fields.size).toBe(0);
+				fields.add(0,1);
+				expect(fields.size).toBe(1);
+				fields.add(99);
+				expect(fields.size).toBe(2);
+			});
+
+		});
+
 	});
 
 

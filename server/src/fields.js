@@ -1,11 +1,15 @@
 var createFields = function () {
 	var fields = [];
+	fields.size = 0;
 	fields.add = function (number, ancestor) {
 		var newField = {
-			number: number,
-			ancestor: ancestor
+			number: number
 		};
+		if (ancestor) {
+			newField.ancestor = ancestor;
+		}
 		fields[number] = newField;
+		fields.size += 1;
 		return fields;
 	};
 	return fields;
