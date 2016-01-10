@@ -5,7 +5,7 @@ var createFields = function () {
 		var newField = {
 			number: number
 		};
-		if (ancestor) {
+		if (ancestor !== undefined) {
 			newField.ancestor = ancestor;
 		}
 		fields[number] = newField;
