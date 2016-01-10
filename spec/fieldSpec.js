@@ -58,6 +58,15 @@ describe("Fields", function () {
 
 		});
 
+
+		it("should be ordered asc", function () {
+			var numbers = [999999,99,5,4,2,0];
+			fields.add(0,1).add(99).add(5).add(2,5).add(999999).add(4);
+			fields.forEach(function (field) {
+				expect(field.number).toBe(numbers.pop());
+			});
+		});
+
 	});
 
 
